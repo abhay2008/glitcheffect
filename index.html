@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/addons/p5.sound.min.js"></script>
+    <script src="./lib/seriously.js"></script>
+    <script src="./lib//effects/seriously.tvglitch.js"></script>
+    <script src="./lib/effects/seriously.ascii.js"></script>
+    <script src="./lib/effects/seriously.pixelate.js"></script>
+    <script src="./lib/effects/seriously.throttle.js"></script>
+    <script src="./lib/effects/seriously.sketch.js"></script>
+    <script src="./lib/effects/seriously.scanlines.js"></script>
+    <script src="./lib/effects/seriously.ripple.js"></script>
+    <script src="./lib/effects/seriously.nightvision.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <script>
+        let capture;
+        let canvas;
+        let src, target;
+        const seriously = new Seriously();
+
+        function setup() {
+            canvas = createCanvas(350, 240, WEBGL);
+            canvas.id("p5Canvas");
+            capture = createCapture(VIDEO);
+            capture.size(320, 240);
+            capture.hide();
+            capture.id("p5Video");
+            const effect = seriously.effect("tvglitch");
+            src = seriously.source("#p5Video");
+            target = seriously.target("#p5Canvas");
+            effect.source = src;
+            target.source = effect;
+            seriously.go();
+        }
+
+        function draw() {}
+    </script>
+</body>
+
+</html>
